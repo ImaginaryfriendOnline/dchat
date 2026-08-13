@@ -1,3 +1,6 @@
+##### 1.7.6
+- Fixed a regression from 1.7.5 where nearly every message (including plain typed chat) was misclassified as a Game message, collapsing the Chat/Game distinction and causing previously-shown Chat messages to disappear whenever a new roll/system message arrived. The Chat/Game tab classification is back to its precise PF2e-specific check; the broader system-agnostic check is still used (safely) for the Whispers auto-switch fix only.
+
 ##### 1.7.5
 - Generalized system-message detection (used for the Game tab and the Auto-Switch Active Tab fix) to check the active game system's own flags instead of hardcoding PF2e. Non-PF2e systems (e.g. dnd5e) now get the same protection against automated messages hijacking the active tab.
 

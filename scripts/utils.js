@@ -22,7 +22,7 @@ export function hasSystemFlags(message = {}) {
 export function classifyMessage(message = {}) {
     const flags = message.flags?.pf2e ?? {};
 
-    const isSystem = hasSystemFlags(message);
+    const isSystem = !!(flags.context || flags.origin || flags.item);
     const isDiceRoll = message.isRoll || (message.rolls?.length > 0);
     const isPf2eDamage = !!(flags.appliedDamage || flags.damageRoll?.outcomes);
     const isDamageReaction = /damage-(taken|received)/.test(message.flavor || "") ||
