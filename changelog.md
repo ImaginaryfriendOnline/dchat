@@ -1,3 +1,6 @@
+##### 1.7.7
+- Fixed damage-log entries (and other automated/system messages that don't carry a recognized PF2e flag) losing their header when they landed in the Chat tab. Message-merge now excludes automated messages from being grouped as a continuation of the previous message, regardless of which tab they classify into.
+
 ##### 1.7.6
 - Fixed a regression from 1.7.5 where nearly every message (including plain typed chat) was misclassified as a Game message, collapsing the Chat/Game distinction and causing previously-shown Chat messages to disappear whenever a new roll/system message arrived. The Chat/Game tab classification is back to its precise PF2e-specific check; the broader system-agnostic check is still used (safely) for the Whispers auto-switch fix only.
 

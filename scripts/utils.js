@@ -19,6 +19,13 @@ export function hasSystemFlags(message = {}) {
     return !!systemFlags && Object.keys(systemFlags).length > 0;
 }
 
+export function isAutomatedMessage(message = {}) {
+    return !!(message.isRoll
+        || message.rolls?.length > 0
+        || message.blind
+        || hasSystemFlags(message));
+}
+
 export function classifyMessage(message = {}) {
     const flags = message.flags?.pf2e ?? {};
 

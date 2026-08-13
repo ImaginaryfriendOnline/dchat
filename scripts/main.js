@@ -20,8 +20,8 @@ import {
     getActiveChatTabs,
     getDocument,
     getElement,
-    hasSystemFlags,
     i18nKey,
+    isAutomatedMessage,
     isIncomingWhisper,
     isCurrentUserAuthor,
     isPinnedMessage
@@ -1180,16 +1180,9 @@ export class ChatTabsManager {
         if (!isSettingEnabled(SETTINGS.AUTO_SWITCH_TABS.key)) return;
 
         const type = classifyMessage(message);
-        if (type === MESSAGE_TYPES.WHISPER && this._isAutomatedMessage(message)) return;
+        if (type === MESSAGE_TYPES.WHISPER && isAutomatedMessage(message)) return;
 
         this.switch(type);
-    }
-
-    static _isAutomatedMessage(message) {
-        return !!(message.isRoll
-            || message.rolls?.length > 0
-            || message.blind
-            || hasSystemFlags(message));
     }
 
     static _ensureModuleToolbar(element) {
@@ -1800,6 +1793,7 @@ class MessageMerge {
     static _isMergeable(message) {
         const type = classifyMessage(message);
         return !isPinnedMessage(message)
+            && !isAutomatedMessage(message)
             && (type === MESSAGE_TYPES.CHAT || type === MESSAGE_TYPES.WHISPER);
     }
 

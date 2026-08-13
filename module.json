@@ -2,7 +2,7 @@
     "id": "dchat",
     "title": "Daavy's Chat (Imaginaryfriend fork)",
     "description": "<p>Improves the Foundry VTT chat log with tabs, message tools, and optional chat features./p>",
-    "version": "1.7.6",
+    "version": "1.7.7",
     "authors": [
           {
                   "name": "Daavy",
