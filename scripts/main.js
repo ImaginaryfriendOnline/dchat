@@ -20,6 +20,7 @@ import {
     getActiveChatTabs,
     getDocument,
     getElement,
+    hasSystemFlags,
     i18nKey,
     isIncomingWhisper,
     isCurrentUserAuthor,
@@ -1188,7 +1189,7 @@ export class ChatTabsManager {
         return !!(message.isRoll
             || message.rolls?.length > 0
             || message.blind
-            || message.flags?.pf2e);
+            || hasSystemFlags(message));
     }
 
     static _ensureModuleToolbar(element) {

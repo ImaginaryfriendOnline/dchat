@@ -1,3 +1,6 @@
+##### 1.7.5
+- Generalized system-message detection (used for the Game tab and the Auto-Switch Active Tab fix) to check the active game system's own flags instead of hardcoding PF2e. Non-PF2e systems (e.g. dnd5e) now get the same protection against automated messages hijacking the active tab.
+
 ##### 1.7.4
 - Fixed automated PF2e messages (e.g. private/blind damage-log entries) forcing your active tab to switch to Whispers.
 - Added an **Auto-Switch Active Tab** setting. Disable it to stop the chat log from ever changing your active tab automatically when you send a message or roll dice.

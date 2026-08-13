@@ -14,10 +14,15 @@ export function getActiveChatTabs() {
         : CHAT_TAB_CONFIG.filter(tab => tab.id !== MESSAGE_TYPES.GAME);
 }
 
+export function hasSystemFlags(message = {}) {
+    const systemFlags = message.flags?.[game.system?.id];
+    return !!systemFlags && Object.keys(systemFlags).length > 0;
+}
+
 export function classifyMessage(message = {}) {
     const flags = message.flags?.pf2e ?? {};
 
-    const isSystem = !!(flags.context || flags.origin || flags.item);
+    const isSystem = hasSystemFlags(message);
     const isDiceRoll = message.isRoll || (message.rolls?.length > 0);
     const isPf2eDamage = !!(flags.appliedDamage || flags.damageRoll?.outcomes);
     const isDamageReaction = /damage-(taken|received)/.test(message.flavor || "") ||
