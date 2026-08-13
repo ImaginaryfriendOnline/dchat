@@ -17,6 +17,7 @@ import {
 import { isSettingEnabled } from "./settings.js";
 import {
     classifyMessage,
+    getActiveChatTabs,
     getDocument,
     getElement,
     i18nKey,
@@ -759,7 +760,7 @@ export class ChatPins {
             unpinAllLabel: game.i18n.localize(i18nKey("Pin.ManagerUnpinAll")),
             unpinLabel: game.i18n.localize(i18nKey("Pin.Unpin")),
             emptyLabel: game.i18n.localize(i18nKey("Pin.ManagerEmpty")),
-            tabs: CHAT_TAB_CONFIG.map(tab => ({
+            tabs: getActiveChatTabs().map(tab => ({
                 id: tab.id,
                 icon: tab.icon,
                 label: game.i18n.localize(tab.label),
@@ -776,9 +777,10 @@ export class ChatPins {
     }
 
     static _getManagerActiveTab(pinnedMessages, activeTab = null) {
-        if (CHAT_TAB_CONFIG.some(tab => tab.id === activeTab)) return activeTab;
+        const activeTabs = getActiveChatTabs();
+        if (activeTabs.some(tab => tab.id === activeTab)) return activeTab;
         if (pinnedMessages.some(message => classifyMessage(message) === MESSAGE_TYPES.CHAT)) return MESSAGE_TYPES.CHAT;
-        return CHAT_TAB_CONFIG.find(tab => pinnedMessages.some(message => classifyMessage(message) === tab.id))?.id ?? MESSAGE_TYPES.CHAT;
+        return activeTabs.find(tab => pinnedMessages.some(message => classifyMessage(message) === tab.id))?.id ?? MESSAGE_TYPES.CHAT;
     }
 
     static _refreshContainer(container) {
@@ -1101,7 +1103,7 @@ export class ChatClearControls {
     static async scopedClearChatLog(clearAll = false) {
         if (!game.user?.isGM) return;
 
-        const currentTab = CHAT_TAB_CONFIG.find(tab => tab.id === ChatTabsManager.activeTab);
+        const currentTab = getActiveChatTabs().find(tab => tab.id === ChatTabsManager.activeTab);
         const tabLabel = game.i18n.localize(clearAll
             ? i18nKey("Tabs.All")
             : currentTab?.label ?? i18nKey("Tabs.Chat"));
@@ -1161,6 +1163,16 @@ export class ChatTabsManager {
         for (const trackedContainer of this._getTrackedContainers()) {
             this.inject(trackedContainer);
         }
+    }
+
+    static onSplitGameChatChange() {
+        if (this.activeTab === MESSAGE_TYPES.GAME) this.activeTab = MESSAGE_TYPES.CHAT;
+
+        for (const container of this._getTrackedContainers()) {
+            container.querySelector(CHAT_SELECTORS.TAB_BAR)?.remove();
+        }
+
+        this.refresh();
     }
 
     static _ensureModuleToolbar(element) {
@@ -1388,7 +1400,7 @@ export class ChatTabsManager {
     static _buildTabBar(documentRef) {
         const tabBar = documentRef.createElement("div");
         tabBar.className = "daavy-chat-tab-bar split-button";
-        tabBar.append(...CHAT_TAB_CONFIG.map(tabConfig => this._buildTabButton(documentRef, tabConfig)));
+        tabBar.append(...getActiveChatTabs().map(tabConfig => this._buildTabButton(documentRef, tabConfig)));
         return tabBar;
     }
 

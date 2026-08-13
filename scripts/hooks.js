@@ -1,4 +1,4 @@
-import { CHAT_SELECTORS, MESSAGE_TYPES } from "./constants.js";
+import { CHAT_SELECTORS, MESSAGE_TYPES, SETTINGS } from "./constants.js";
 import { injectFeedbackButton } from "./feedback.js";
 import { groupSettings, registerModuleSettings } from "./settings.js";
 import { ImageUpload } from "./features/media.js";
@@ -17,7 +17,9 @@ import {
 } from "./main.js";
 
 Hooks.once("init", () => {
-    registerModuleSettings();
+    registerModuleSettings({
+        [SETTINGS.SPLIT_GAME_CHAT.key]: () => ChatTabsManager.onSplitGameChatChange()
+    });
     AutocompleteWhisper.init();
     ImageUpload.init();
 });

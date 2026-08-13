@@ -1,7 +1,17 @@
-import { MESSAGE_TYPES, MODULE_ID } from "./constants.js";
+import { CHAT_TAB_CONFIG, MESSAGE_TYPES, MODULE_ID, SETTINGS } from "./constants.js";
 
 export function i18nKey(key) {
     return `daavy-chat.${key}`;
+}
+
+export function isGameChatSplit() {
+    return game.settings?.get(MODULE_ID, SETTINGS.SPLIT_GAME_CHAT.key) ?? true;
+}
+
+export function getActiveChatTabs() {
+    return isGameChatSplit()
+        ? CHAT_TAB_CONFIG
+        : CHAT_TAB_CONFIG.filter(tab => tab.id !== MESSAGE_TYPES.GAME);
 }
 
 export function classifyMessage(message = {}) {
@@ -14,7 +24,7 @@ export function classifyMessage(message = {}) {
         flags.context?.type === "damage-taken";
 
     if (isSystem || isDiceRoll || isPf2eDamage || isDamageReaction) {
-        return MESSAGE_TYPES.GAME;
+        return isGameChatSplit() ? MESSAGE_TYPES.GAME : MESSAGE_TYPES.CHAT;
     }
 
     if (message.whisper?.length > 0 || message.blind) {

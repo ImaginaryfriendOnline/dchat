@@ -29,6 +29,10 @@
         "Name": "Allow Player Media Uploads",
         "Hint": "Allow players to send images and GIFs in chat."
       },
+      "SplitGameChat": {
+        "Name": "Split Chat & Game Tabs",
+        "Hint": "Show dice rolls and other system messages in their own Game tab. Disable to merge them into the Chat tab."
+      },
       "hideDamageTraits": {
         "Name": "Hide Damage Traits",
         "Hint": "Hide trait tags on damage rolls."

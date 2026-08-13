@@ -1,3 +1,6 @@
+##### 1.7.3
+- Added a **Split Chat & Game Tabs** setting. Disable it to merge dice rolls and system messages into the Chat tab instead of keeping them in a separate Game tab.
+
 ##### 1.7.2
 - Fixed an issue where all users received a visual notification whenever a Whisper was sent.
 - Fixed an issue where message merging in the Whisper tab combined messages sent to different users.

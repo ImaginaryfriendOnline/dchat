@@ -47,6 +47,12 @@ export const SETTINGS = {
         restricted: true,
         default: true
     },
+    SPLIT_GAME_CHAT: {
+        key: "splitGameChat",
+        name: "daavy-chat.Settings.SplitGameChat.Name",
+        hint: "daavy-chat.Settings.SplitGameChat.Hint",
+        default: true
+    },
     HIDE_DAMAGE_TRAITS: {
         key: "hideDamageTraits",
         name: "daavy-chat.Settings.hideDamageTraits.Name",
@@ -71,7 +77,8 @@ export const SETTING_GROUPS = {
         SETTINGS.HIDE_CHAT_FORMATTING.key,
         SETTINGS.HIDE_CHAT_INITIATIVE.key,
         SETTINGS.HIDE_PRIVATE_MESSAGES.key,
-        SETTINGS.ALLOW_PLAYER_MEDIA.key
+        SETTINGS.ALLOW_PLAYER_MEDIA.key,
+        SETTINGS.SPLIT_GAME_CHAT.key
     ],
     PF2eOnly: [
         SETTINGS.HIDE_DAMAGE_BUTTONS.key,

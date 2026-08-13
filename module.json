@@ -2,7 +2,7 @@
   "id": "dchat",
   "title": "Daavy's Chat",
   "description": "<p>Improves the Foundry VTT chat log with tabs, message tools, and optional chat features./p>",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "authors": [
     {
       "name": "Daavy",

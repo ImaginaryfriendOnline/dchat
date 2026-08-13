@@ -39,14 +39,15 @@ export function groupSettings(renderedHtml) {
     }
 }
 
-export function registerModuleSettings() {
+export function registerModuleSettings(onChangeHandlers = {}) {
     for (const { key, ...options } of Object.values(SETTINGS)) {
         game.settings.register(MODULE_ID, key, {
             scope: "client",
             config: true,
             default: options.default ?? false,
             type: Boolean,
-            ...options
+            ...options,
+            onChange: onChangeHandlers[key] ?? options.onChange
         });
     }
 }
