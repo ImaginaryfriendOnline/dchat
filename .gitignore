@@ -6,3 +6,6 @@ dchat.lock
 
 # Tests
 tests/
+
+# Release build output
+dist/
