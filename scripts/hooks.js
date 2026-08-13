@@ -2,7 +2,7 @@ import { CHAT_SELECTORS, MESSAGE_TYPES, SETTINGS } from "./constants.js";
 import { injectFeedbackButton } from "./feedback.js";
 import { groupSettings, registerModuleSettings } from "./settings.js";
 import { ImageUpload } from "./features/media.js";
-import { classifyMessage, getElement, isCurrentUserAuthor } from "./utils.js";
+import { getElement, isCurrentUserAuthor } from "./utils.js";
 import {
     AutocompleteWhisper,
     ChatPins,
@@ -84,7 +84,7 @@ Hooks.on("createChatMessage", (message) => {
     void ImageUpload.onCreateMessage(message);
     addChatNotification(message);
     ChatTabsManager.onCreateWhisperMessage(message);
-    if (isCurrentUserAuthor(message)) ChatTabsManager.switch(classifyMessage(message));
+    if (isCurrentUserAuthor(message)) ChatTabsManager.autoSwitchForMessage(message);
 });
 Hooks.on("updateChatMessage", scheduleChatUiRefresh);
 Hooks.on("preDeleteChatMessage", (message, ...args) => {

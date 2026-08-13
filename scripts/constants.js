@@ -53,6 +53,12 @@ export const SETTINGS = {
         hint: "daavy-chat.Settings.SplitGameChat.Hint",
         default: true
     },
+    AUTO_SWITCH_TABS: {
+        key: "autoSwitchTabs",
+        name: "daavy-chat.Settings.AutoSwitchTabs.Name",
+        hint: "daavy-chat.Settings.AutoSwitchTabs.Hint",
+        default: true
+    },
     HIDE_DAMAGE_TRAITS: {
         key: "hideDamageTraits",
         name: "daavy-chat.Settings.hideDamageTraits.Name",
@@ -78,7 +84,8 @@ export const SETTING_GROUPS = {
         SETTINGS.HIDE_CHAT_INITIATIVE.key,
         SETTINGS.HIDE_PRIVATE_MESSAGES.key,
         SETTINGS.ALLOW_PLAYER_MEDIA.key,
-        SETTINGS.SPLIT_GAME_CHAT.key
+        SETTINGS.SPLIT_GAME_CHAT.key,
+        SETTINGS.AUTO_SWITCH_TABS.key
     ],
     PF2eOnly: [
         SETTINGS.HIDE_DAMAGE_BUTTONS.key,

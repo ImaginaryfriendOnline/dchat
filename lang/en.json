@@ -33,6 +33,10 @@
         "Name": "Split Chat & Game Tabs",
         "Hint": "Show dice rolls and other system messages in their own Game tab. Disable to merge them into the Chat tab."
       },
+      "AutoSwitchTabs": {
+        "Name": "Auto-Switch Active Tab",
+        "Hint": "Automatically switch your active tab when you send a message or roll dice. Disable to keep your current tab no matter what you send."
+      },
       "hideDamageTraits": {
         "Name": "Hide Damage Traits",
         "Hint": "Hide trait tags on damage rolls."

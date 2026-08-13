@@ -1,3 +1,7 @@
+##### 1.7.4
+- Fixed automated PF2e messages (e.g. private/blind damage-log entries) forcing your active tab to switch to Whispers.
+- Added an **Auto-Switch Active Tab** setting. Disable it to stop the chat log from ever changing your active tab automatically when you send a message or roll dice.
+
 ##### 1.7.3
 - Added a **Split Chat & Game Tabs** setting. Disable it to merge dice rolls and system messages into the Chat tab instead of keeping them in a separate Game tab.
 

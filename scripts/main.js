@@ -1175,6 +1175,22 @@ export class ChatTabsManager {
         this.refresh();
     }
 
+    static autoSwitchForMessage(message) {
+        if (!isSettingEnabled(SETTINGS.AUTO_SWITCH_TABS.key)) return;
+
+        const type = classifyMessage(message);
+        if (type === MESSAGE_TYPES.WHISPER && this._isAutomatedMessage(message)) return;
+
+        this.switch(type);
+    }
+
+    static _isAutomatedMessage(message) {
+        return !!(message.isRoll
+            || message.rolls?.length > 0
+            || message.blind
+            || message.flags?.pf2e);
+    }
+
     static _ensureModuleToolbar(element) {
         const messageLog = element.querySelector(CHAT_SELECTORS.MESSAGE_LIST);
         if (!messageLog) return null;
